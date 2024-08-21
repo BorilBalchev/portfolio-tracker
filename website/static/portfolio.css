@@ -1,0 +1,67 @@
+input{
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+#ticker, #amount{
+    background-color: rgb(34, 37, 41);
+    color: #fff;
+}
+
+.amount{
+    font-size: small;
+    height: 30px;
+}
+
+#ticker::placeholder, #amount::placeholder{
+    color: #ffffffce;
+}
+
+.timer{
+    background-color: rgb(34, 37, 41);
+    color: #fff;
+    width: fit-content;
+    border-radius: 8px;
+    padding-left: 5px;
+    padding-right: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    font-size: large;
+    margin-left: auto;
+}
+
+.dark-red{
+    color: #ff0000b5 !important;
+}
+
+.red{
+    color: #FF0000;
+}
+
+.gray{
+    color: #808080 !important;
+}
+
+.green{
+    color: #00BB00 !important;
+}
+
+.dark-green{
+    color: #00bb00b5 !important;
+}
+
+.red-flash{
+    transition: background-color 1s;
+    background-color: #ffcccc !important;
+}
+
+.green-flash{
+    transition: background-color 1s;
+    background-color: #ccffcc !important;
+}
+
+.gray-flash{
+    transition: background-color 1s;
+    background-color: #cccccc !important;
+}

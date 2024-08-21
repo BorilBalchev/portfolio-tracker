@@ -1,0 +1,296 @@
+{% extends "base.html" %}
+{% block style %}<link rel="stylesheet" href="{{ url_for('static', filename='ta.css') }}">{% endblock %}
+{% block title %}Technical Analysis{% endblock %}
+
+{% block content %}
+<h1 align="center">Technical Analysis</h1>
+<form method="POST">
+    <select class="form-select form-select-lg mb-3 bg-dark text-light" aria-label=".form-select-lg example" name="ticker">
+        <option value="None" selected>Select an asset</option>
+        {% for ticker in user.tickers %}
+            <option value="{{ ticker.data }}">{{ ticker.data }}</option>
+        {% endfor %}
+    </select>
+    <div class="row">
+        <div class="container-dropdwn col no-padding">
+            <div class="select-btn">
+                <span class="btn-text">SMA</span>
+                <span class="arrow-dwn">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </span>
+            </div>
+            <ul class="list-items" id="sma">
+                <li class="item">
+                    <input type="checkbox" value="200 Day SMA" id="200SMA" name="checkbox">
+                    <label for="200SMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">200 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#ff0000">
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="100 Day SMA" id="100SMA" name="checkbox">
+                    <label for="100SMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">100 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#00ff00">
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="50 Day SMA" id="50SMA" name="checkbox">
+                    <label for="50SMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">50 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#0000ff">
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="20 Day SMA" id="20SMA" name="checkbox">
+                    <label for="20SMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">20 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#00ffff">
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="10 Day SMA" id="10SMA" name="checkbox">
+                    <label for="10SMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">10 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#ff00ff">
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="5 Day SMA" id="5SMA" name="checkbox">
+                    <label for="5SMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">5 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#ffff00">
+                </li>
+            </ul>
+        </div>
+        <div class="container-dropdwn col no-padding">
+            <div class="select-btn">
+                <span class="btn-text">EMA</span>
+                <span class="arrow-dwn">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </span>
+            </div>
+            <ul class="list-items" id="ema">
+                <li class="item">
+                    <input type="checkbox" value="200 Day EMA" id="200EMA" name="checkbox">
+                    <label for="200EMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">200 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#ff0000">
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="100 Day EMA" id="100EMA" name="checkbox">
+                    <label for="100EMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">100 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#00ff00">
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="50 Day EMA" id="50EMA" name="checkbox">
+                    <label for="50EMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">50 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#0000ff">
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="20 Day EMA" id="20EMA" name="checkbox">
+                    <label for="20EMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">20 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#00ffff">
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="10 Day EMA" id="10EMA" name="checkbox">
+                    <label for="10EMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">10 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#ff00ff">
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="5 Day EMA" id="5EMA" name="checkbox">
+                    <label for="5EMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">5 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#ffff00">
+                </li>
+            </ul>
+        </div>
+        <div class="container-dropdwn col no-padding">
+            <div class="select-btn">
+                <span class="btn-text">VWMA</span>
+                <span class="arrow-dwn">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </span>
+            </div>
+            <ul class="list-items" id="vwma">
+                <li class="item">
+                    <input type="checkbox" value="200 Day VWMA" id="200VWMA" name="checkbox">
+                    <label for="200VWMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">200 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#ff0000">
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="100 Day VWMA" id="100VWMA" name="checkbox">
+                    <label for="100VWMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">100 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#00ff00">
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="50 Day VWMA" id="50VWMA" name="checkbox">
+                    <label for="50VWMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">50 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#0000ff">
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="20 Day VWMA" id="20VWMA" name="checkbox">
+                    <label for="20VWMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">20 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#00ffff">
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="10 Day VWMA" id="10VWMA" name="checkbox">
+                    <label for="10VWMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">10 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#ff00ff">
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="5 Day VWMA" id="5VWMA" name="checkbox">
+                    <label for="5VWMA">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">5 Day</span>
+                    </label>
+                    <input type="color" class="form-control form-control-color" name="color" value="#ffff00">
+                </li>
+            </ul>
+        </div>
+        <div class="container-dropdwn col no-padding">
+            <div class="select-btn">
+                <span class="btn-text">Oscillators</span>
+                <span class="arrow-dwn">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </span>
+            </div>
+            <ul class="list-items" id="oscillators">
+                <li class="item">
+                    <input type="checkbox" value="RSI" id="RSI" name="checkbox">
+                    <label for="RSI">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">RSI</span>
+                    </label>
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="MACD" id="MACD" name="checkbox">
+                    <label for="MACD">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">MACD</span>
+                    </label>
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="ADX" id="ADX" name="checkbox">
+                    <label for="ADX">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">ADX</span>
+                    </label>
+                </li>
+                <li class="item">
+                    <input type="checkbox" value="CCI" id="CCI" name="checkbox">
+                    <label for="CCI">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">CCI</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="datepicker col">
+            <label for="start">Start Date</label>
+            <input type="date" name="start" id="start">
+        </div>
+        <div class="datepicker col">
+            <label for="end">End date</label>
+            <input type="date" name="end" id="end">
+        </div>
+    </div>
+    <div align="center" class="btn-container">
+        <button type="submit" class="btn btn-primary">Display</button>
+    </div>
+</form>
+<div id="hover-tooltip-p"></div>
+<div class="chart-div">
+    {{ div | safe }}
+    {{ script | safe }}
+</div>
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="{{ url_for('static', filename='ta.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bokeh/3.5.1/bokeh.min.js" integrity="sha512-J2N37QIeFhHGAxGzVQM8hlkA8xqRiqRWWro3p4cA8XsBcQCophi97UFAxq0kegsCN9OgK+6f1yLOZ6RZR5Ui3A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bokeh/3.5.1/bokeh-widgets.min.js" integrity="sha512-hUFCDBux295TTfHZsr58gkj2H8o1OoIf/E1Fmwi3nEs58Ood1pYKo7c0vqmIz4Itxpk8eG3oRNuA5PJY3ZByfw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block style %} <link rel="stylesheet" href="{{ url_for('static', filename='portfolio.css') }}"> {% endblock %}
+{% block title %}Portfolio{% endblock %}
+
+{% block content %}
+<h1 align="center">Portfolio</h1>
+<form method="POST">
+    <div class="row">
+        <input type="text" name="ticker" id="ticker" class="form-control col" placeholder="Ticker Symbol">
+        <input type="number" step="0.01" name="amount" id="amount" class="form-control col" placeholder="Quantity" min="0.00">
+    </div>
+    <br>
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add to Portfolio</button>
+    </div>
+</form>
+<div class="timer">
+    <p>Next update in <span id="counter">15</span></p>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Amount</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="item-id">
+                <div class="mb-3">
+                    <label for="item-value" class="form-label">New Amount of Supply</label>
+                    <input type="number" step="0.01" class="form-control" id="item-value" min="0">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveValue()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table table-dark" id="tickers">
+    <tr class="table-dark">
+        <th>Asset</th>
+        <th>Price</th>
+        <th>% Change</th>
+        <th>Holding</th>
+        <th>Value</th>
+        <th></th>
+    </tr>
+    {% for ticker in user.tickers|reverse %}
+        <tr class="table-dark" id="{{ ticker.data }}">
+            <td class="table-dark">
+                {{ ticker.data }}
+            </td>
+            <td class="table-dark" id="{{ ticker.data }}-price"></td>
+            <td class="table-dark" id="{{ ticker.data }}-pct"></td>
+            <td class="table-dark" id="{{ ticker.data }}-amount">
+                <button class="btn btn-primary amount" onclick="editAmount('{{ ticker.id }}', '{{ ticker.amount_of_supply }}')" id="value-{{ ticker.id }}">{{ ticker.amount_of_supply }}</button>
+            </td>
+            <td class="table-dark value" id="{{ ticker.data }}-value"></td>
+            <td style="text-align: center;" class="table-danger"><button type="button" class="btn-close" onclick="deleteTicker('{{ ticker.id }}')"></button></td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+{% block script %}<script type="text/javascript" src="{{ url_for('static', filename='portfolio.js') }}"></script>{% endblock %}

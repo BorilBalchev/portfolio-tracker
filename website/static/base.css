@@ -1,0 +1,13 @@
+body{
+    background-color: rgb(243, 241, 236);
+}
+
+.username{
+    font-size: x-large;
+    color: rgb(243, 241, 236);
+    margin-right: 5%;
+}
+
+#balance{
+    color: rgb(243, 241, 236);
+}
