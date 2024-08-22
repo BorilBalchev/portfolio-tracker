@@ -48,7 +48,7 @@ def isValidAsset(ticker):
         data = yf.Ticker(ticker).history(period='1mo')
         price = data.iloc[-1].Close
         return True
-    except (IndexError, KeyError, TypeError, ValueError, yf.shared.TickerError):
+    except (IndexError, KeyError, TypeError, ValueError):
         return False
 
 
