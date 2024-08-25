@@ -85,7 +85,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Email: boril.t.balchev@gmail.com </br>
 LinkedIn: https://linkedin.com/in/boril-balchev
 
 
