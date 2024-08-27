@@ -1,6 +1,10 @@
 # portfolio-tracker
 A full-stack web application for real-time tracking and analysis of financial assets
 
+## Demo
+
+https://github.com/user-attachments/assets/bb6333b5-940d-4caf-bd65-9a23800e7f5c
+
 ### Built With
 
 * [![Flask][Flask-icon]][Flask-url]
