@@ -68,7 +68,6 @@ https://github.com/user-attachments/assets/bb6333b5-940d-4caf-bd65-9a23800e7f5c
 - [x] Implemented secure login and sign-up processes by hashing passwords and enforcing strong password requirements.
 - [x] Enabled real-time tracking of selected digital assets using the yfinance Python library, with data retrieval and updates every 15 seconds.
 - [x] Integrated advanced charting capabilities for selected assets using the `Bokeh` Python library, enabling technical analysis with indicators from the `pandas-ta` library, such as moving averages (SMA, EMA, VWMA) and oscillators (RSI, MACD, ADX, CCI).
-- [ ] Planned feature: Retrieve the latest news for each asset in the portfolio, creating a personalized news feed for the user.
 
 
 
